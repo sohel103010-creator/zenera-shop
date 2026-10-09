@@ -1,5 +1,8 @@
 import { Pool } from "pg";
 
+// Supabase uses self-signed certs in chain; allow for serverless pg
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 let pool: Pool | null = null;
 
 function getPool(): Pool {
