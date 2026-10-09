@@ -5,7 +5,9 @@ let pool: Pool | null = null;
 function getPool(): Pool {
   if (!pool) {
     const connectionString =
-      process.env.DATABASE_URL || process.env.POSTGRES_URL;
+      process.env.DATABASE_URL ||
+      process.env.POSTGRES_URL_NON_POOLING ||
+      process.env.POSTGRES_URL;
     if (!connectionString) {
       throw new Error("DATABASE_URL environment variable is not set");
     }
