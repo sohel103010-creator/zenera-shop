@@ -15,9 +15,8 @@ export async function GET(req: Request) {
     return NextResponse.json({ products: rows });
   } catch (e) {
     console.error("GET /api/products", e);
-    const msg = e instanceof Error ? e.message : String(e);
     return NextResponse.json(
-      { error: "প্রোডাক্ট লোড করা যায়নি", detail: msg },
+      { error: "প্রোডাক্ট লোড করা যায়নি" },
       { status: 500 }
     );
   }
