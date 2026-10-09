@@ -17,6 +17,11 @@ export async function ensureSchemaAndSeed(): Promise<void> {
     await query(stmt);
   }
 
+  // Migrate default PIN 1234 -> Sohel@103010 (one-time)
+  await query(
+    "UPDATE settings SET value = 'Sohel@103010' WHERE key = 'admin_pin' AND value = '1234'"
+  );
+
   const existing = await queryOne<{ count: string }>(
     "SELECT COUNT(*)::text AS count FROM products"
   );

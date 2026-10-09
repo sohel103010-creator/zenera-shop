@@ -35,5 +35,5 @@ INSERT INTO settings (key, value) VALUES
   ('delivery_free', 'true'),
   ('delivery_charge_inside', '60'),
   ('delivery_charge_outside', '120'),
-  ('admin_pin', '1234')
+  ('admin_pin', 'Sohel@103010')
 ON CONFLICT (key) DO NOTHING;
