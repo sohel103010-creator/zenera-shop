@@ -103,6 +103,30 @@ export default function ProductPage({
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name,
+            image: images.map((src: string) =>
+              src.startsWith("http") ? src : `https://zenera.top${src}`
+            ),
+            description: product.name,
+            brand: { "@type": "Brand", name: "Zenera" },
+            offers: {
+              "@type": "Offer",
+              url: `https://zenera.top/product/${product.slug}`,
+              priceCurrency: "BDT",
+              price: product.price,
+              availability: out
+                ? "https://schema.org/OutOfStock"
+                : "https://schema.org/InStock",
+            },
+          }),
+        }}
+      />
       <main className="mx-auto w-full max-w-4xl flex-1 px-3 py-4 sm:px-4">
         <Link
           href="/"
